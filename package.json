@@ -1,0 +1,23 @@
+{
+  "name": "koishi-plugin-sd-switch",
+  "description": "快速切换 SD-WebUI 模型",
+  "version": "1.0.1",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "atsc -b"
+  },
+  "keywords": [
+    "chatbot",
+    "koishi",
+    "plugin"
+  ],
+  "peerDependencies": {
+    "koishi": "^4.10.4"
+  }
+}
