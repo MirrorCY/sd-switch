@@ -1,6 +1,6 @@
 commands:
   sd-switch:
-    description: SD 模型切换
+    description: SD 模型及 VAE 切换
     usage: |-
       输入 help sd-switch 查看此帮助
       输入 切换模型 查看可用模型
@@ -10,5 +10,5 @@ commands:
       inputErr: 你输入了啥？
       inQuery: 查询模型中
       queryErr: 查询失败
-      switchSucceed: 切换成功
+      modelSucceed: 切换成功{0}
       switchFailed: 切换失败
