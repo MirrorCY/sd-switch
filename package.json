@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-sd-switch",
   "description": "快速切换 SD-WebUI 模型",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
