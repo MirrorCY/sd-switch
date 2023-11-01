@@ -7,7 +7,8 @@ commands:
 
     messages:
       switching: 模型切换中
-      inputErr: 你输入了啥？
+      inputErr: 输入错误或超时
+      pptrErr: 未启用 puppeteer 插件，无法使用图像渲染
       inQuery: 查询模型中
       queryErr: 查询失败
       modelSucceed: 切换成功{0}
