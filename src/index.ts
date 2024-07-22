@@ -1,8 +1,11 @@
-import { Context, Logger, Schema, trimSlash } from 'koishi'
+import { Context, Schema, trimSlash } from 'koishi'
 import { } from 'koishi-plugin-puppeteer'
 
 export const name = 'sd-switch'
-export const inject = { optional: ['puppeteer'] }
+export const inject = {
+  optional: ['puppeteer'],
+  required: ['http'],
+}
 
 export interface Config {
   endpoint?: string
@@ -29,8 +32,6 @@ export const Config: Schema<Config> = Schema.intersect([
     Schema.object({}),
   ])
 ])
-
-const logger = new Logger(name)
 
 const MODELS_ENDPOINT = "/sdapi/v1/sd-models"
 const OPTIONS_ENDPOINT = "/sdapi/v1/options"
@@ -96,7 +97,7 @@ export function apply(ctx: Context, config: Config) {
       async function getInfo() {
         session.send(session.text('.inQuery'))
         try {
-          const res = await ctx.http.axios(trimSlash(config.endpoint) + OPTIONS_ENDPOINT)
+          const res = await ctx.http(trimSlash(config.endpoint) + OPTIONS_ENDPOINT)
           vae = res.data.sd_vae
           model = res.data.sd_model_checkpoint
         } catch (err) {
@@ -107,7 +108,7 @@ export function apply(ctx: Context, config: Config) {
 
       async function getModelList() {
         try {
-          const res = await ctx.http.axios(trimSlash(config.endpoint) + MODELS_ENDPOINT)
+          const res = await ctx.http(trimSlash(config.endpoint) + MODELS_ENDPOINT)
           res.data.forEach(item => models.push(item.title))
         } catch (err) {
           session.send(session.text('.queryErr'))
@@ -141,7 +142,7 @@ export function apply(ctx: Context, config: Config) {
       async function switchModel(index: number) {
         try {
           session.send(session.text('.switching'))
-          await ctx.http.axios(trimSlash(config.endpoint) + OPTIONS_ENDPOINT, {
+          await ctx.http(trimSlash(config.endpoint) + OPTIONS_ENDPOINT, {
             method: 'POST',
             data: { sd_model_checkpoint: models[index - 1] }
           })
@@ -156,7 +157,7 @@ export function apply(ctx: Context, config: Config) {
       async function switchVae(index: number) {
         try {
           session.send(session.text('.switching'))
-          await ctx.http.axios(trimSlash(config.endpoint) + OPTIONS_ENDPOINT, {
+          await ctx.http(trimSlash(config.endpoint) + OPTIONS_ENDPOINT, {
             method: 'POST',
             data: { sd_vae: config.vaeList[index - 1] }
           })

@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-sd-switch",
   "description": "快速切换 SD-WebUI 模型",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -9,17 +9,15 @@
     "dist"
   ],
   "license": "MIT",
-  "scripts": {
-    "build": "atsc -b"
-  },
   "homepage": "https://forum.koishi.xyz/t/topic/57",
   "keywords": [
     "chatbot",
     "koishi",
     "plugin",
-    "novelai"
+    "novelai",
+    "sd"
   ],
   "peerDependencies": {
-    "koishi": "^4.10.6-alpha.2"
+    "koishi": "^4.17.8"
   }
 }
